@@ -1,0 +1,98 @@
+:host {
+  --logo-width: 83px;
+  --logo-height: 35px;
+}
+
+mat-toolbar-row {
+  height: 48px;
+  box-shadow: 0 0.125rem 0.3125rem rgba(0, 0, 0, 0.26);
+  z-index: 2000;
+  padding-left: 6px;
+  padding-right: calc(24px - 16px);
+  --mat-icon-button-icon-color: #fff;
+  --mat-icon-button-state-layer-color: #fff;
+}
+
+.mat-toolbar.focus {
+  display: none;
+}
+
+.mat-toolbar-multiple-rows {
+  min-height: 48px;
+}
+
+.app-bar {
+  background-color: var(--y-app-bar-background-color);
+}
+
+.app-bar.replay {
+  background-color: darkviolet;
+}
+
+.app-bar .mat-mdc-button:not(:disabled) {
+  color: #fff !important;
+}
+
+.logo-wrapper {
+  padding-left: 16px;
+  padding-right: 16px;
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-wrapper.nosidebar {
+  padding-left: 24px;
+}
+
+.logo-wrapper img {
+  max-height: var(--logo-height);
+  max-width: var(--logo-width);
+  height: auto;
+  width: auto;
+}
+
+.logo-wrapper:hover img {
+  opacity: 0.8;
+}
+
+.tag {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  pointer-events: none;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  color: #fff;
+}
+
+.selected-instance.mat-mdc-button {
+  border: 1px solid grey;
+  border-radius: 40px;
+  line-height: 24px;
+}
+
+::ng-deep .no-padding-dialog .mat-mdc-dialog-container {
+  padding: 0;
+  overflow: hidden;
+}
+
+.user-button {
+  background-color: var(--y-accent);
+  border-radius: 25px;
+}
+
+.mat-mdc-button:hover:not(.user-button) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.material-symbols.icon22 {
+  font-size: 22px !important;
+  height: 22px !important;
+  width: 22px !important;
+}

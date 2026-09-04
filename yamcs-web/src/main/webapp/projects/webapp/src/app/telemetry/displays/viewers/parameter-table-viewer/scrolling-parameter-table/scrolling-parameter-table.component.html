@@ -1,0 +1,56 @@
+@if (dataSource.data.length) {
+  <table mat-table [dataSource]="dataSource" class="ya-data-table expand" [class.paused]="paused">
+    <ng-container cdkColumnDef="generationTime">
+      <th mat-header-cell *cdkHeaderCellDef>Generation time</th>
+      <td mat-cell *cdkCellDef="let row">{{ (row.generationTime | datetime) || "-" }}</td>
+    </ng-container>
+    @for (parameter of model.parameters; track parameter; let i = $index) {
+      <ng-container [cdkColumnDef]="parameter">
+        <th mat-header-cell *cdkHeaderCellDef>
+          <a
+            [routerLink]="'/telemetry/parameters' + parameter"
+            [queryParams]="{ c: yamcs.context }">
+            {{ parameter }}
+          </a>
+          @if (showActions) {
+            <ya-more>
+              <button mat-menu-item (click)="moveLeft.emit(i)">Move left</button>
+              <button mat-menu-item (click)="moveRight.emit(i)">Move right</button>
+              <mat-divider />
+              <button mat-menu-item (click)="removeColumn.emit(parameter)">Remove column</button>
+            </ya-more>
+          }
+        </th>
+        <td mat-cell *cdkCellDef="let row">
+          @if (row.pvals[parameter]; as pval) {
+            @if (pval) {
+              <ya-parameter-status [pval]="pval">
+                {{ (pval.engValue | value) || "-" }}
+              </ya-parameter-status>
+            }
+          } @else {
+            <span>-</span>
+          }
+        </td>
+      </ng-container>
+    }
+    <ng-container cdkColumnDef="actions">
+      <th mat-header-cell *cdkHeaderCellDef class="expand"></th>
+      <td mat-cell *cdkCellDef="let row"></td>
+    </ng-container>
+    <tr mat-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+}
+
+@if (showActions) {
+  <p>&nbsp;</p>
+  Buffer size:
+  <ya-select [formControl]="bufferSizeControl">
+    <ya-option id="10" label="10" />
+    <ya-option id="25" label="25" />
+    <ya-option id="50" label="50" />
+    <ya-option id="75" label="75" />
+    <ya-option id="100" label="100" />
+  </ya-select>
+}

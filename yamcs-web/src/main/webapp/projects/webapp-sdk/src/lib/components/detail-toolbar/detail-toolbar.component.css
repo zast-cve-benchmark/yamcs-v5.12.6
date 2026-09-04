@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  background-color: var(--y-detail-pane-background-color);
+}
+
+mat-toolbar {
+  background-color: var(--y-detail-pane-background-color);
+  color: var(--y-detail-pane-foreground-color);
+  font-style: normal;
+  font-weight: normal;
+  align-items: center;
+  height: 36px;
+  border-bottom: 1px solid var(--y-border-color);
+  font-size: 14px;
+}
+
+.icon-action {
+  display: flex;
+  align-items: center;
+}

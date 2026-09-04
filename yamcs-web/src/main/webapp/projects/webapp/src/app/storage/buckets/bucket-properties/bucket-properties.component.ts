@@ -1,0 +1,45 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
+import {
+  Bucket,
+  StorageClient,
+  WebappSdkModule,
+  YamcsService,
+} from '@yamcs/webapp-sdk';
+import { BehaviorSubject } from 'rxjs';
+import { StoragePageComponent } from '../../storage-page/storage-page.component';
+import { AppStorageToolbarLabel } from '../../storage-toolbar/storage-toolbar-label.directive';
+import { AppStorageToolbar } from '../../storage-toolbar/storage-toolbar.component';
+import { BucketPageTabsComponent } from '../bucket-page-tabs/bucket-page-tabs.component';
+
+@Component({
+  templateUrl: './bucket-properties.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
+    AppStorageToolbar,
+    AppStorageToolbarLabel,
+    BucketPageTabsComponent,
+    StoragePageComponent,
+    WebappSdkModule,
+  ],
+})
+export class BucketPropertiesComponent {
+  name: string;
+
+  bucket$ = new BehaviorSubject<Bucket | null>(null);
+  private storageClient: StorageClient;
+
+  constructor(route: ActivatedRoute, yamcs: YamcsService, title: Title) {
+    this.name = route.snapshot.parent!.paramMap.get('name')!;
+    title.setTitle(this.name + ': Properties');
+    this.storageClient = yamcs.createStorageClient();
+    this.storageClient.getBucket(this.name).then((bucket) => {
+      this.bucket$.next(bucket);
+    });
+  }
+
+  zeroOrMore(value: number) {
+    return Math.max(0, value);
+  }
+}

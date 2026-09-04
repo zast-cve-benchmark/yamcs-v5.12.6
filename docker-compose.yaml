@@ -1,0 +1,17 @@
+services:
+  yamcs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: yamcs-repro/yamcs-5.12.6:local
+    container_name: yamcs5126
+    ports:
+      - "8090:8090"
+    environment:
+      JAVA_OPTS: "-Xmx768m -XX:+UseG1GC"
+    restart: "no"
+    mem_limit: 1g
+    mem_reservation: 512m
+    # Simulator embedded TM/TC links bind localhost inside the container
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

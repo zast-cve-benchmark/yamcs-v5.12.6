@@ -1,0 +1,7 @@
+*
+!Dockerfile
+!yamcs-5.12.6.tar.gz
+!yamcs-jython.jar
+!yamcs-simulator.jar
+!yamcs-config/
+!.dockerignore

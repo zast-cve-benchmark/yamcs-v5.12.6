@@ -1,0 +1,30 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  margin-right: 5px;
+  background-color: #eee;
+  box-sizing: border-box;
+  border: 1px solid var(--y-border-color);
+}
+
+.fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  background-color: var(--y-accent);
+  background: linear-gradient(
+    to bottom,
+    var(--y-accent),
+    #bce3dd 50%,
+    var(--y-accent)
+  );
+}
+
+.progress-label {
+  position: relative;
+  pointer-events: none;
+}

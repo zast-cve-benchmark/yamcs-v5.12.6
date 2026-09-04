@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Create stack</h2>
+
+<mat-dialog-content>
+  <ya-form [formGroup]="filenameForm">
+    <ya-field label="Name" [class.invalid]="filenameForm.get('name')?.invalid">
+      <input #filename type="text" formControlName="name" />
+    </ya-field>
+    <ya-field label="Format">
+      <ya-select formControlName="format">
+        <ya-option id="ycs" label="YCS" />
+        <ya-option id="xml" label="XML (deprecated)" />
+      </ya-select>
+    </ya-field>
+  </ya-form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <ya-button mat-dialog-close>CANCEL</ya-button>
+  <ya-button appearance="primary" (click)="save()" [disabled]="!filenameForm.valid">SAVE</ya-button>
+</mat-dialog-actions>
